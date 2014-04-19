@@ -7,7 +7,7 @@
 #include "BoundingBox.h"
 #include "shape.h"
 
-#define MAX_LEVELS 2
+#define MAX_LEVELS 3
 using namespace std;
 
 class OctTree{

@@ -19,13 +19,12 @@ int main()
 
     Shape *p = GeometryCreator::create_cube(0,0,0,300);
     Shape *p2 = GeometryCreator::create_cube(0,0,0,1);
+    Shape *p3 = GeometryCreator::create_cube(450,0,0,300);
 
-    if(p->getBoundingBox()->collide(p2->getBoundingBox())){
-        printf("collided \n");
-    }
 
     oct->insert_object(p);
     oct->insert_object(p2);
+    oct->insert_object(p3);
 
     vector< vector<Shape*>* >* colliding_objects = new vector< vector<Shape*>* >();
     printf("size before %d \n" , colliding_objects->size());

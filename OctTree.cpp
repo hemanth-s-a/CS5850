@@ -133,7 +133,7 @@ void OctTree::colliding_objects_parent(vector< vector<Shape*>* >* colliding_obje
                 colliding_pair->push_back(parent_objects->at(i));
                 colliding_pair->push_back(objects->at(j));
                 colliding_objects->push_back(colliding_pair);
-                printf("adding colliding objects %d \n",level);
+
             }
         }
     }
