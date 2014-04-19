@@ -28,6 +28,8 @@ public:
 
 	    return bbox;
 	}
+	
+	void draw (GLFWwindow* window);
 };
 
 #endif
