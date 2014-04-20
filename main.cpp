@@ -41,14 +41,13 @@ void game_loop(GLFWwindow* window, game_world* world) {
 	double new_time;
 	int width, height;
 	int frame = 1;
-	double game_time = glfwGetTime();
-	//eggs_caught = eggs_missed = 0;
-	//basket = ratio/(float)2;
+	//double game_time = glfwGetTime();
 	
-	while (true) {
-		new_time = glfwGetTime();
-		if((new_time - game_time) >= 0.02) {
-			game_time = new_time;
+	
+	
+		//new_time = glfwGetTime();
+		//if((new_time - game_time) >= 0.02) {
+			//game_time = new_time;
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			glLoadIdentity();
@@ -59,17 +58,14 @@ void game_loop(GLFWwindow* window, game_world* world) {
 			printf ("Drawn\n");
 			//render_everything(frame++);
 			
-			//draw_basket(window);
-			//handle_eggs();
 			
-			//win_lose(window);
 			
 			//getch ();
 
 			glfwSwapBuffers(window);
-			//glfwPollEvents();
-		}
-	}
+			glfwPollEvents();
+		//}
+	
 }
 
 int main()
@@ -117,14 +113,14 @@ int main()
 		return 1;
 	}
 	glfwMakeContextCurrent(window);
-	glfwSetWindowSizeCallback(window, resize_callback);
+	//glfwSetWindowSizeCallback(window, resize_callback);
 	glfwSetWindowCloseCallback(window, close_callback);
 	glfwSetKeyCallback(window, key_callback);
 	
 	while(true) {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0.f, 800, 0.f, 600, 1.f, -1.f);
+		glOrtho(0.f, 800.0f, 0.f, 600, 1.f, -1.f);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		
@@ -133,13 +129,13 @@ int main()
 		//draw_first_screen(window);
 		
 		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-		srand(time(NULL));
+		//srand(time(NULL));
 		
 		int width, height;
-		glfwGetFramebufferSize(window, &width, &height);
-		resize_callback(window, width, height);
+		//glfwGetFramebufferSize(window, &width, &height);
+		//resize_callback(window, width, height);
 		
-		//egg_drop_time = game_time = glfwGetTime();
+		
 		game_loop(window, world);
 		
 		/*glMatrixMode(GL_PROJECTION);
@@ -149,7 +145,7 @@ int main()
 		glLoadIdentity();
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		
-		draw_win_lose(window);*/
+		*/
 	}
 	
     return 0;
