@@ -140,3 +140,15 @@ void OctTree::colliding_objects_parent(vector< vector<Shape*>* >* colliding_obje
 
 }
 
+
+void OctTree::clear_objects(){
+
+    objects->clear();
+
+    if(child){
+        for(size_t i=0; i < child->size() ; i++ ){
+                child->at(i)->clear_objects();
+        }
+    }
+
+}

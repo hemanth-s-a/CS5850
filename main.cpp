@@ -31,6 +31,7 @@ int main()
     oct->get_colliding_objects_bb(colliding_objects);
     printf("size after %d \n" , colliding_objects->size());
     //printf("%f %f %f %f %f %f \n", p->bbox->min.x,p->bbox->min.y,p->bbox->min.z,p->bbox->max.x,p->bbox->max.y,p->bbox->max.z);
+    oct->clear_objects();
 
     delete(oct);
     return 0;

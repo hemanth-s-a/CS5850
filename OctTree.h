@@ -16,6 +16,7 @@ public:
    OctTree(BoundingBox *bound):OctTree(bound,0){}
    void insert_object(Shape *p);
    void get_colliding_objects_bb(vector< vector<Shape*>* >* colliding_objects);
+   void clear_objects();
 
 private:
 
