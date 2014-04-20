@@ -16,7 +16,7 @@ class game_world {
 	
 	void add_object (Shape* s);
 	
-	void draw ();
+	void draw (vector< vector<Shape*>* >* colliding_objects);
 	
 	//void check_collision () {
 		
