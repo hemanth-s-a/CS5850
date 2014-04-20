@@ -1,16 +1,8 @@
-#include <stdio.h>
-//#include <conio.h>
 #include <time.h>
+#include <stdio.h>
 #include <stdlib.h>
+
 #include <GLFW\glfw3.h>
-
-#include <iostream>
-#include <vector>
-
-#include "OctTree.h"
-#include "GeometryCreator.h"
-#include "GameWorld.h"
-using namespace std;
 
 void error_callback(int error, const char* description) {
     fputs(description, stderr);
@@ -37,7 +29,7 @@ void resize_callback(GLFWwindow* window, int width, int height) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void game_loop(GLFWwindow* window, game_world* world) {
+void game_loop(GLFWwindow* window) {
 	double new_time;
 	int width, height;
 	int frame = 1;
@@ -53,12 +45,16 @@ void game_loop(GLFWwindow* window, game_world* world) {
 			glClear(GL_COLOR_BUFFER_BIT);
 			glLoadIdentity();
 			//cout<<"Drawing";
-			printf ("Drawing\n");
-			world->draw();
+			//printf ("Drawing\n");
+			//world->draw();
 			//cout<<"Drawn";
-			printf ("Drawn\n");
+			//printf ("Drawn\n");
 			//render_everything(frame++);
 			
+			glBegin (GL_LINES);
+			glVertex2i (10, 20);
+			glVertex2i (30, 30);
+			glEnd ();
 			//draw_basket(window);
 			//handle_eggs();
 			
@@ -74,37 +70,6 @@ void game_loop(GLFWwindow* window, game_world* world) {
 
 int main()
 {
-    BoundingBox *bounds = new BoundingBox(0,0,0,800,800,800);
-
-	//printf("%f %f %f %f %f %f \n", bounds->min.x,bounds->min.y,bounds->min.z,bounds->max.x,bounds->max.y,bounds->max.z);
-
-
-    OctTree *oct = new OctTree(bounds);
-	// printf("level %d \n", oct->level);
-	//  printf("%f %f %f %f %f %f \n", oct->bound->min.x,oct->bound->min.y,oct->bound->min.z,oct->bound->max.x,oct->bound->max.y,oct->bound->max.z);
-	
-	game_world* world = new game_world();
-	
-	
-
-
-    Shape *p = GeometryCreator::create_cube(0,0,0,300);
-    Shape *p2 = GeometryCreator::create_cube(0,0,0,1);
-    Shape *p3 = GeometryCreator::create_cube(450,0,0,300);
-
-	world->add_object (p);
-
-    oct->insert_object(p);
-    oct->insert_object(p2);
-    oct->insert_object(p3);
-
-    vector< vector<Shape*>* >* colliding_objects = new vector< vector<Shape*>* >();
-    printf("size before %d \n" , colliding_objects->size());
-    oct->get_colliding_objects_bb(colliding_objects);
-    printf("size after %d \n" , colliding_objects->size());
-    //printf("%f %f %f %f %f %f \n", p->bbox->min.x,p->bbox->min.y,p->bbox->min.z,p->bbox->max.x,p->bbox->max.y,p->bbox->max.z);
-
-    delete(oct);
 	
 	GLFWwindow* window;
 	if(!glfwInit()) {
@@ -140,7 +105,7 @@ int main()
 		resize_callback(window, width, height);
 		
 		//egg_drop_time = game_time = glfwGetTime();
-		game_loop(window, world);
+		game_loop(window);
 		
 		/*glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();

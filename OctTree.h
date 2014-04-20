@@ -14,7 +14,6 @@ class OctTree{
 
 public:
    OctTree(BoundingBox *bound):OctTree(bound,0){}
-   OctTree(BoundingBox *bound,int levels);
    void insert_object(Shape *p);
    void get_colliding_objects_bb(vector< vector<Shape*>* >* colliding_objects);
 
@@ -24,7 +23,7 @@ private:
     int level;
     vector<OctTree*> *child;
     vector<Shape*> *objects;
-    
+    OctTree(BoundingBox *bound,int levels);
     void colliding_objects_in_node(vector< vector<Shape*>* >* colliding_objects);
     void get_colliding_objects_bb(vector< vector<Shape*>* >* colliding_objects,vector<Shape*> * parent);
     void colliding_objects_parent(vector< vector<Shape*>* >* colliding_objects,vector<Shape*> * parent_objects);

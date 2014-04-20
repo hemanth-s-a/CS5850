@@ -29,7 +29,7 @@ public:
 	    return bbox;
 	}
 	
-	void draw (GLFWwindow* window);
+	void draw ();
 };
 
 #endif
