@@ -55,7 +55,7 @@ void BoundingBox::add_vertex(vertex *v)
 
 bool BoundingBox::collide(BoundingBox *b1)
 {
-    printf("called collide \n");
+
     if(min.x <= b1->max.x  && max.x >= b1->min.x )
         if(min.y <= b1->max.y  && max.y >= b1->min.y )
             if(min.z <= b1->max.z  && max.z >= b1->min.z )

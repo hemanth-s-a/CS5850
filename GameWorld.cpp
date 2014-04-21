@@ -13,11 +13,25 @@ void game_world::add_object (Shape* s) {
 	world_objects.push_back (s);
 }
 
+vector< vector<Shape*>* >* game_world::detect_collisions(){
+
+    oct->clear_objects();
+
+    for(size_t i = 0; i < world_objects.size(); i++)
+    {
+        oct->insert_object(world_objects.at(i));
+    }
+
+    vector< vector<Shape*>* >* colliding_objects = new vector< vector<Shape*>* >();
+    oct->get_colliding_objects_bb(colliding_objects);
+    return colliding_objects;
+}
+
+
 void game_world::draw (vector< vector<Shape*>* >* colliding_objects) {
 	glColor3f (1, 1, 1);
 	for (int i = 0; i < world_objects.size(); ++i) {
-		//printf ("Drawing 1st\n");
-		world_objects.at(i)->draw();
+			world_objects.at(i)->draw();
 	}
 	glColor3f (1, 0, 0);
 	for (int i = 0; i < colliding_objects->size(); ++i) {
