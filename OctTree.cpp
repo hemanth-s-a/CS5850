@@ -3,12 +3,15 @@
 /**
     Creating a oct tree with for the specified bounds in x, y, x bounds. The boundary is sub divided in to 8 parts
     for the specified recursively. The number of sub division is controlled by MAX_LEVELS.
-    A Octree with below bounds
+
+    A Octree with below bounds will be sub divided into below 8 smaller boundaries
+
      min range  ||   max range
     x   y    z     x    y    z
     0   0    0    800  800  800
 
-    will be sub divided into below 8 smaller boundaries
+     BOUNDS OF CHILD OCT TRESS
+
     0   0    0    400  400  400
     400 0    0    800  400  400
     0   400  0    400  800  400
