@@ -29,11 +29,13 @@ vector< vector<Shape*>* >* game_world::detect_collisions(){
 
 
 void game_world::draw (vector< vector<Shape*>* >* colliding_objects) {
-	glColor3f (1, 1, 1);
+
+	glColor4f (1, 1, 1,.4);
 	for (int i = 0; i < world_objects.size(); ++i) {
 			world_objects.at(i)->draw();
 	}
-	glColor3f (1, 0, 0);
+
+	glColor4f(1,0,0,.4);
 	for (int i = 0; i < colliding_objects->size(); ++i) {
 		for (int j = 0; j < colliding_objects->at(i)->size(); ++j) {
 			colliding_objects->at(i)->at(j)->draw();

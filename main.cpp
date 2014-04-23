@@ -29,6 +29,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 void resize_callback(GLFWwindow* window, int width, int height) {
+
 	float ratio = width / (float) height;
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
@@ -67,19 +68,16 @@ int main()
 {
    	game_world* world = new game_world();
 
-    Shape *p = GeometryCreator::create_cube(0,0,0,300);
-    Shape *p2 = GeometryCreator::create_cube(0,0,0,1);
-    Shape *p3 = GeometryCreator::create_cube(450,0,0,300);
-	Shape *p4 = GeometryCreator::create_cube(50,350,0,200);
-	Shape *p5 = GeometryCreator::create_cube(220,400,0,100);
+    Shape *p = GeometryCreator::create_cube(300,300,0,200);
+       Shape *p1 = GeometryCreator::create_cube(400,400,300,150);
+
+   Shape *p2 = GeometryCreator::create_cube(450,450,0,200);
+
+
 
 	world->add_object (p);
+	world->add_object (p1);
 	world->add_object (p2);
-	world->add_object (p3);
-	world->add_object (p4);
-	world->add_object (p5);
-
-
 
 
 
@@ -98,6 +96,8 @@ int main()
 	glfwSetWindowCloseCallback(window, close_callback);
 	glfwSetKeyCallback(window, key_callback);
 
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	while(true) {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
