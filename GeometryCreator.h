@@ -21,6 +21,8 @@ public:
 		cube->vertices.push_back(new vertex(x+size,y+size,z+size));
 		cube->vertices.push_back(new vertex(x,y+size,z+size));
 		cube->vertices.push_back(new vertex(x,y,z+size));
+		cube->size = size;
+		cube->grabbed = false;
 		
 		a[0] = 0; a[1] = 1; a[2] = 2;
 		cube->indices.insert (cube->indices.end(), a, a+3);

@@ -12,6 +12,8 @@
 #include "GameWorld.h"
 using namespace std;
 
+game_world* world;
+
 void error_callback(int error, const char* description) {
     fputs(description, stderr);
 }
@@ -28,6 +30,23 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         close_callback(window);
 }
 
+void mouse_callback(GLFWwindow* window, int button, int action, int mods) {
+	double xpos, ypos;
+    if (action == GLFW_PRESS) {
+        glfwGetCursorPos (window, &xpos, &ypos);
+		//printf ("%f\t%f", xpos, ypos);
+		world->grab_object (xpos, (600 -ypos));
+	} else {
+		world->release_object ();
+	}
+}
+
+void cursor_callback(GLFWwindow* window, double xpos, double ypos) {
+	if (glfwGetMouseButton (window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS) {
+		world->move_objects(xpos, (600 - ypos));
+	}
+}
+
 void resize_callback(GLFWwindow* window, int width, int height) {
 
 	float ratio = width / (float) height;
@@ -38,7 +57,7 @@ void resize_callback(GLFWwindow* window, int width, int height) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void game_loop(GLFWwindow* window, game_world* world) {
+void game_loop(GLFWwindow* window) {
 //	double new_time;
 //	int width, height;
 //	int frame = 1;
@@ -66,12 +85,12 @@ void game_loop(GLFWwindow* window, game_world* world) {
 
 int main()
 {
-   	game_world* world = new game_world();
+   	world = new game_world();
 
     Shape *p = GeometryCreator::create_cube(300,300,0,200);
-       Shape *p1 = GeometryCreator::create_cube(400,400,300,150);
+    Shape *p1 = GeometryCreator::create_cube(400,400,300,150);
 
-   Shape *p2 = GeometryCreator::create_cube(450,450,0,200);
+	Shape *p2 = GeometryCreator::create_cube(450,450,0,200);
 
 
 
@@ -95,6 +114,8 @@ int main()
 	//glfwSetWindowSizeCallback(window, resize_callback);
 	glfwSetWindowCloseCallback(window, close_callback);
 	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_callback);
+	glfwSetCursorPosCallback(window, cursor_callback);
 
     glEnable (GL_BLEND);
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -117,7 +138,7 @@ int main()
 		//resize_callback(window, width, height);
 
 
-		game_loop(window, world);
+		game_loop(window);
 
 		/*glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();

@@ -11,8 +11,11 @@ class Shape {
 
 public:
 	vector<vertex*> vertices;
+	int size;
 	vector<int> indices;
 	BoundingBox *bbox;
+	bool grabbed;
+	
 	BoundingBox* getBoundingBox(){
 	    if(!bbox){
             bbox = new BoundingBox();
@@ -30,6 +33,10 @@ public:
 	}
 	
 	void draw ();
+	void grab_object (const double xpos, const double ypos);
+	void get_max_min_vertex (vertex *max, vertex *min);
+	void release_object ();
+	void move_shape (const double xpos, const double ypos);
 };
 
 #endif
